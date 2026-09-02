@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corpora · Ciencia de la salud aplicada al día a día de las organizaciones</title>
+<meta name="description" content="Formaciones en salud para empresas, diseñadas desde la fisioterapia y la docencia universitaria. Ergonomía, dolor, salud de la mujer, longevidad laboral y descanso.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --terracota: #B24A28;
+    --terracota-clar: #D97A4E;
+    --verd: #2E4A32;
+    --crema: #F4EEE4;
+    --crema-fosc: #E8DFD0;
+    --grafit: #2C2C2A;
+    --gris: #5F5E5A;
+    --linia: #D8D2C6;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--crema);
+    color: var(--grafit);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--terracota); outline-offset: 3px; }
+
+  .shell { max-width: 1060px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .lockup { display: inline-flex; align-items: center; text-decoration: none; }
+  .lockup svg { overflow: visible; flex: none; }
+  .lockup .word { font-family: var(--serif); letter-spacing: 0.3px; }
+
+  /* header */
+  header { background: var(--grafit); position: sticky; top: 0; z-index: 20; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 0.9rem 0; }
+  .bar .lockup svg { margin-right: -6px; }
+  .bar .lockup .word { font-size: 21px; color: var(--crema); }
+  nav ul { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; }
+  nav a { font-size: 14px; color: #C9C6BE; text-decoration: none; padding-bottom: 2px; border-bottom: 1px solid transparent; }
+  nav a:hover { color: var(--crema); border-bottom-color: var(--terracota-clar); }
+  @media (max-width: 820px) { nav { display: none; } }
+
+  /* hero */
+  .hero { background: var(--grafit); color: var(--crema); padding: 5.5rem 0 6rem; }
+  .hero-inner { max-width: 730px; }
+  .hero h1 {
+    font-family: var(--serif); font-weight: normal;
+    font-size: clamp(2.1rem, 6vw, 3.4rem); line-height: 1.18;
+    margin: 0 0 1.75rem; letter-spacing: -0.5px;
+  }
+  .hero .lede { font-size: 1.075rem; color: #CFCBC2; max-width: 56ch; margin: 0 0 2.5rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.9rem; align-items: center; }
+  .btn { display: inline-block; font-size: 0.94rem; font-weight: 500; text-decoration: none; padding: 0.85rem 1.5rem; border-radius: 4px; border: 0; cursor: pointer; font-family: var(--sans); }
+  .btn-solid { background: var(--terracota-clar); color: #241009; }
+  .btn-solid:hover { background: #E8895B; }
+  .btn-line { box-shadow: inset 0 0 0 1px #575651; color: var(--crema); }
+  .btn-line:hover { box-shadow: inset 0 0 0 1px #8A8880; }
+  .hero-meta {
+    margin-top: 3.5rem; padding-top: 1.75rem; border-top: 1px solid #45443F;
+    display: flex; flex-wrap: wrap; gap: 2.5rem; font-size: 0.85rem; color: #A9A69E;
+  }
+  .hero-meta strong { color: var(--crema); font-weight: 500; display: block; font-size: 0.95rem; }
+
+  /* sections */
+  section { padding: 5rem 0; }
+  .section-head { max-width: 62ch; margin-bottom: 3rem; }
+  h2 {
+    font-family: var(--serif); font-weight: normal;
+    font-size: clamp(1.7rem, 4vw, 2.3rem); line-height: 1.25;
+    color: var(--verd); margin: 0 0 1rem;
+  }
+  .section-head p { margin: 0; color: var(--gris); font-size: 1.02rem; }
+
+  /* course families */
+  .family { margin-bottom: 3.5rem; }
+  .family > h3 {
+    font-family: var(--serif); font-weight: normal; font-size: 1.3rem;
+    color: var(--terracota); margin: 0 0 1.5rem;
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--linia);
+  }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 2rem; }
+
+  .card { background: #fff; border: 1px solid var(--linia); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+  .photo {
+    aspect-ratio: 16 / 9; background: var(--crema-fosc);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem; text-align: center;
+    font-size: 0.78rem; color: #9A9184; line-height: 1.5;
+    border-bottom: 1px solid var(--linia);
+  }
+  .card-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
+  .card h4 {
+    font-family: var(--serif); font-weight: normal; font-size: 1.22rem;
+    line-height: 1.3; margin: 0 0 0.6rem; color: var(--grafit);
+  }
+  .card .resum { font-size: 0.94rem; color: var(--gris); margin: 0 0 1.25rem; }
+  .card .apartat { font-size: 0.78rem; color: var(--verd); font-weight: 600; margin-bottom: 0.5rem; }
+  .card ul.temes { margin: 0 0 1.35rem; padding-left: 1.1rem; font-size: 0.9rem; }
+  .card ul.temes li { margin-bottom: 0.28rem; }
+  .card ul.benef { list-style: none; margin: 0; padding: 0; font-size: 0.9rem; }
+  .card ul.benef li { position: relative; padding-left: 1.5rem; margin-bottom: 0.4rem; }
+  .card ul.benef li::before {
+    content: ""; position: absolute; left: 0; top: 0.42em;
+    width: 9px; height: 5px;
+    border-left: 2px solid var(--terracota); border-bottom: 2px solid var(--terracota);
+    transform: rotate(-45deg);
+  }
+  .card .benef-wrap { margin-top: auto; padding-top: 1.1rem; border-top: 1px solid var(--crema-fosc); }
+
+  /* bespoke */
+  .bespoke { background: var(--verd); color: var(--crema); }
+  .bespoke h2 { color: var(--crema); }
+  .bespoke .section-head p { color: #C4D2C6; }
+  .bespoke-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 2.25rem; margin-bottom: 3rem; }
+  .bespoke-grid > div { padding-top: 1.25rem; border-top: 2px solid var(--terracota-clar); }
+  .bespoke-grid h3 {
+    font-family: var(--serif); font-weight: normal; font-size: 1.5rem;
+    line-height: 1.25; margin: 0.9rem 0 0.7rem;
+  }
+  .bespoke-grid svg { display: block; }
+  .bespoke-grid p { margin: 0; font-size: 0.94rem; color: #C4D2C6; }
+  .propose { background: #26402A; border-radius: 10px; padding: 2.25rem; max-width: 74ch; }
+  .propose h3 { font-family: var(--serif); font-weight: normal; font-size: 1.45rem; margin: 0 0 0.9rem; }
+  .propose p { font-size: 0.98rem; color: #CBD8CC; }
+  .propose p:last-of-type { margin-bottom: 1.6rem; }
+
+  /* about */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 3.5rem; align-items: start; }
+  .about-grid > div > p:first-child { margin-top: 0; }
+  .about-grid p { font-size: 1.02rem; }
+  .portrait {
+    aspect-ratio: 4 / 5; background: var(--crema-fosc); border: 1px solid var(--linia);
+    border-radius: 10px; margin-bottom: 1.25rem;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.25rem; text-align: center; font-size: 0.8rem; color: #9A9184; line-height: 1.5;
+  }
+  .creds { background: #fff; border: 1px solid var(--linia); border-radius: 10px; padding: 1.6rem; }
+  .creds h3 { font-size: 0.95rem; margin: 0 0 1rem; color: var(--verd); }
+  .creds p { font-size: 0.92rem; color: var(--gris); margin: 0 0 0.85rem; }
+  .creds p:last-child { margin-bottom: 0; }
+  @media (max-width: 780px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+  /* contact */
+  .contact { background: var(--grafit); color: var(--crema); }
+  .contact h2 { color: var(--crema); }
+  .contact .section-head p { color: #CFCBC2; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+  label { display: block; font-size: 0.85rem; color: #A9A69E; margin-bottom: 0.4rem; }
+  input, textarea, select {
+    width: 100%; font-family: var(--sans); font-size: 0.95rem; color: var(--crema);
+    background: #383733; border: 1px solid #4E4D48; border-radius: 4px;
+    padding: 0.7rem 0.8rem; margin-bottom: 1.1rem;
+  }
+  textarea { min-height: 110px; resize: vertical; }
+  .direct p { font-size: 0.97rem; color: #CFCBC2; }
+  .direct a { color: var(--terracota-clar); }
+  @media (max-width: 780px) { .contact-grid { grid-template-columns: 1fr; gap: 2.25rem; } }
+
+  /* footer */
+  footer { background: #232220; color: #8A8880; padding: 2.5rem 0; font-size: 0.83rem; }
+  .foot { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; align-items: center; }
+  .foot .lockup svg { margin-right: -5px; }
+  .foot .lockup .word { font-size: 18px; color: #C9C6BE; }
+  .sendnote{font-size:.85rem;opacity:.75;margin-top:.6rem}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="shell bar">
+    <a class="lockup" href="#top" aria-label="Corpora, inicio">
+      <svg width="33" height="33" viewBox="0 0 56 56" aria-hidden="true">
+        <path d="M45 17 A 19 19 0 1 0 45 39" fill="none" stroke="#F4EEE4" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="29.5" cy="28" r="9.5" fill="#D97A4E"/>
+      </svg>
+      <span class="word">orpora</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#formaciones">Formaciones</a></li>
+        <li><a href="#medida">Metodología</a></li>
+        <li><a href="#quien">Sobre Corpora</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="shell hero-inner">
+    <h1>Ciencia de la salud aplicada al día a día de las organizaciones</h1>
+    <p class="lede">Formación para equipos profesionales, diseñada desde la práctica clínica y la docencia universitaria. Contenidos fundamentados en la evidencia y aplicados al puesto de trabajo.</p>
+    <div class="actions">
+      <a class="btn btn-solid" href="#formaciones">Ver el catálogo</a>
+      <a class="btn btn-line" href="#contacto">Solicitar una propuesta</a>
+    </div>
+    <div class="hero-meta">
+      <div><strong>Presencial y online</strong>En las instalaciones del cliente o en aula virtual</div>
+      <div><strong>Formato práctico</strong>Demostración y participación en cada sesión</div>
+      <div><strong>Catalán y castellano</strong>Materiales en los dos idiomas</div>
+    </div>
+  </div>
+</div>
+
+<section id="formaciones">
+  <div class="shell">
+    <div class="section-head">
+      <h2>Catálogo de formaciones</h2>
+      <p>Ocho programas agrupados en tres ámbitos. Cada uno se adapta al sector, a los puestos y a la disponibilidad horaria de la organización.</p>
+    </div>
+
+    <!-- ÁMBITO 1 -->
+    <div class="family">
+      <h3>Ergonomía y cuerpo en el trabajo</h3>
+      <div class="cards">
+
+        <article class="card">
+          <div class="photo">Foto: puesto de oficina real, con la persona trabajando en su silla y pantalla</div>
+          <div class="card-body">
+            <h4>Ergonomía del puesto de oficina y teletrabajo</h4>
+            <p class="resum">Configuración correcta de silla, pantalla y teclado, y criterios para habilitar un puesto de teletrabajo adecuado.</p>
+            <div class="apartat">Temas</div>
+            <ul class="temes">
+              <li>Criterios de referencia para la altura de silla, mesa y pantalla</li>
+              <li>Postura sentada sostenible a lo largo de la jornada</li>
+              <li>Adaptación de espacios domésticos para el teletrabajo</li>
+              <li>Ratón, teclado y protección de la muñeca</li>
+              <li>Revisión individual del propio puesto</li>
+            </ul>
+            <div class="benef-wrap">
+              <div class="apartat">Beneficios para la organización</div>
+              <ul class="benef">
+                <li>Descenso de consultas por molestias cervicales y de muñeca</li>
+                <li>Refuerzo del plan de prevención vigente</li>
+                <li>Inversión en material acotada y correctamente orientada</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="photo">Foto: manos de la formadora explorando la zona cervical de una persona sentada</div>
+          <div class="card-body">
+            <h4>Dolor de espalda y cuello: prevención y manejo</h4>
+            <p class="resum">Manejo del episodio de dolor y prevención de la recaída, desde el criterio clínico y la evidencia actual.</p>
+            <div class="apartat">Temas</div>
+            <ul class="temes">
+              <li>Origen del dolor lumbar y cervical según la evidencia</li>
+              <li>Señales que requieren consulta médica</li>
+              <li>El movimiento como tratamiento y el papel del reposo</li>
+              <li>Rutina de cinco minutos aplicable en la oficina</li>
+              <li>Pauta de actuación ante un episodio agudo</li>
+            </ul>
+            <div class="benef-wrap">
+              <div class="apartat">Beneficios para la organización</div>
+              <ul class="benef">
+                <li>Reducción de bajas por trastornos musculoesqueléticos</li>
+                <li>Reincorporación más rápida tras un episodio</li>
+                <li>Personal capaz de distinguir molestia de signo de alarma</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="photo">Foto: dos o tres personas estirando junto a sus mesas, en ropa de trabajo normal</div>
+          <div class="card-body">
+            <h4>Micropausas: cuerpo activo en horario laboral</h4>
+            <p class="resum">Interrupciones breves y pautadas que recuperan movilidad y concentración sin alterar el ritmo de trabajo.</p>
+            <div class="apartat">Temas</div>
+            <ul class="temes">
+              <li>Efectos fisiológicos de la inmovilidad prolongada</li>
+              <li>Secuencias de dos y de cinco minutos</li>
+              <li>Ejercicios aplicables sin material ni cambio de ropa</li>
+              <li>Integración en la jornada y en los procesos existentes</li>
+              <li>Capacitación de una persona referente por equipo</li>
+            </ul>
+            <div class="benef-wrap">
+              <div class="apartat">Beneficios para la organización</div>
+              <ul class="benef">
+                <li>Mejora de la concentración en la segunda mitad de la jornada</li>
+                <li>Hábito implantable sin coste ni infraestructura añadida</li>
+                <li>Medida visible de atención al bienestar del personal</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="photo">Foto: persona en almacén, obra o taller levantando o desplazando carga</div>
+          <div class="card-body">
+            <h4>Cuerpo y carga en trabajos de esfuerzo</h4>
+            <p class="resum">Dirigido a puestos con carga física. Técnica de levantamiento y empuje, y prevención del daño acumulado.</p>
+            <div class="apartat">Temas</div>
+            <ul class="temes">
+              <li>Biomecánica de la carga aplicada al puesto</li>
+              <li>Técnica correcta de levantamiento, empuje y arrastre</li>
+              <li>Trabajo de pie y en posturas mantenidas</li>
+              <li>Preparación física al inicio del turno</li>
+              <li>Recuperación entre jornadas</li>
+            </ul>
+            <div class="benef-wrap">
+              <div class="apartat">Beneficios para la organización</div>
+              <ul class="benef">
+                <li>Reducción de lesiones por sobreesfuerzo</li>
+                <li>Corrección del gesto en condiciones reales de trabajo</li>
+                <li>Cumplimiento reforzado en prevención de riesgos</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ÁMBITO 2 -->
+    <div class="family">
+      <h3>Salud de la mujer en el trabajo</h3>
+      <div class="cards">
+
+        <article class="card">
+          <div class="photo">Foto: mujer de unos 50 años en contexto profesional, en una reunión o en su mesa</div>
+          <div class="card-body">
+            <h4>Menopausia: la transición hormonal en el día a día del trabajo</h4>
+            <p class="resum">Fisiología de esta etapa y su repercusión en el descanso, la concentración y el desempeño profesional.</p>
+            <div class="apartat">Temas</div>
+            <ul class="temes">
+              <li>Fisiología de la transición hormonal</li>
+              <li>Síntomas con impacto directo en el trabajo</li>
+              <li>Abordaje de sofocos, alteración del sueño y concentración</li>
+              <li>Ejercicio y alimentación según la evidencia disponible</li>
+              <li>Medidas de adaptación del puesto viables</li>
+              <li>Sesión complementaria dirigida a mandos intermedios</li>
+            </ul>
+            <div class="benef-wrap">
+              <div class="apartat">Beneficios para la organización</div>
+              <ul class="benef">
+                <li>Retención de profesionales en su etapa de mayor experiencia</li>
+                <li>Reducción del absentismo no declarado</li>
+                <li>Política de igualdad con aplicación efectiva</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="photo">Foto: equipo mixto de trabajo en conversación, ambiente de oficina o sala</div>
+          <div class="card-body">
+            <h4>Salud de la mujer en el trabajo</h4>
+            <p class="resum">Programa transversal sobre ciclo menstrual, embarazo, reincorporación posparto y menopausia en el ámbito laboral.</p>
+            <div class="apartat">Temas</div>
+            <ul class="temes">
+              <li>Ciclo menstrual, dolor incapacitante y desempeño</li>
+              <li>Embarazo y adaptación del puesto</li>
+              <li>Necesidades y adaptaciones en la reincorporación posparto</li>
+              <li>Visión general de la menopausia</li>
+              <li>Medidas aplicables por la empresa en cada etapa</li>
+            </ul>
+            <div class="benef-wrap">
+              <div class="apartat">Beneficios para la organización</div>
+              <ul class="benef">
+                <li>Retención de talento en las etapas de mayor rotación</li>
+                <li>Mandos formados para acompañar con criterio</li>
+                <li>Un único programa con alcance sobre buena parte del personal</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- ÁMBITO 3 -->
+    <div class="family">
+      <h3>Longevidad y rendimiento</h3>
+      <div class="cards">
+
+        <article class="card">
+          <div class="photo">Foto: profesional de más de 50 años en plena actividad laboral, con cara de competencia</div>
+          <div class="card-body">
+            <h4>Longevidad laboral: plantillas a partir de los 50</h4>
+            <p class="resum">Mantenimiento de la capacidad física y del rendimiento en la segunda mitad de la trayectoria profesional.</p>
+            <div class="apartat">Temas</div>
+            <ul class="temes">
+              <li>Cambios fisiológicos reales y creencias infundadas</li>
+              <li>Fuerza y masa muscular como prioridad en esta etapa</li>
+              <li>Equilibrio, movilidad y prevención de caídas</li>
+              <li>Gestión de la energía y recuperación durante el turno</li>
+              <li>Plan individual sostenible a largo plazo</li>
+            </ul>
+            <div class="benef-wrap">
+              <div class="apartat">Beneficios para la organización</div>
+              <ul class="benef">
+                <li>Retención de personal experimentado en su puesto</li>
+                <li>Reducción de bajas de larga duración</li>
+                <li>Respuesta concreta al envejecimiento del personal</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="photo">Foto: contraste entre luz de tarde y espacio de descanso, o persona saliendo del trabajo</div>
+          <div class="card-body">
+            <h4>Sueño, descanso y rendimiento</h4>
+            <p class="resum">Repercusión del descanso insuficiente en el desempeño y medidas efectivas para mejorar la calidad del sueño.</p>
+            <div class="apartat">Temas</div>
+            <ul class="temes">
+              <li>Fisiología del sueño y factores que lo alteran</li>
+              <li>Efecto del descanso insuficiente en atención y errores</li>
+              <li>Higiene del sueño y medidas con respaldo científico</li>
+              <li>Turnos rotativos y trabajo nocturno</li>
+              <li>Criterios de derivación a consulta médica</li>
+            </ul>
+            <div class="benef-wrap">
+              <div class="apartat">Beneficios para la organización</div>
+              <ul class="benef">
+                <li>Reducción de errores y accidentes asociados a la fatiga</li>
+                <li>Mejora de la atención en tareas críticas</li>
+                <li>Especial aplicación en organizaciones con turnos rotativos</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bespoke" id="medida">
+  <div class="shell">
+    <div class="section-head">
+      <h2>Metodología</h2>
+      <p>Ninguna sesión se imparte igual en dos organizaciones. El contenido es el mismo; los ejemplos, los gestos y las prioridades se ajustan a cada contexto.</p>
+    </div>
+    <div class="bespoke-grid">
+      <div>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#D97A4E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.4 15.4 L21 21"/><path d="M8 10.5h5M10.5 8v5"/></svg>
+        <h3>Análisis del puesto</h3>
+        <p>El diseño de cada sesión parte de una entrevista con los responsables del área y, cuando resulta viable, de una observación directa del puesto. De ese análisis salen los ejemplos que se trabajan en el aula.</p>
+      </div>
+      <div>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#D97A4E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.2" r="2.2"/><path d="M12 6.4v6"/><path d="M12 12.4 L8.5 21"/><path d="M12 12.4 L15.5 21"/><path d="M6.5 9.2 L12 8.2 L17.5 9.2"/></svg>
+        <h3>Formación práctica</h3>
+        <p>Grupos reducidos, con demostración y corrección individual. Cada participante ejecuta durante la sesión los gestos que después deberá aplicar en su puesto.</p>
+      </div>
+      <div>
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#D97A4E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9.5 14.2l2 2 3.5-4"/></svg>
+        <h3>Materiales y seguimiento</h3>
+        <p>Cada formación se entrega con material de consulta, pautas de aplicación diaria y un informe de observaciones con las recomendaciones concretas para el puesto.</p>
+      </div>
+    </div>
+
+    <div class="propose">
+      <h3>Formaciones a medida</h3>
+      <p>El catálogo reúne los programas de mayor demanda, pero cada organización presenta necesidades propias. Un colectivo con una exigencia física específica, una campaña interna de salud que requiere contenido riguroso o una incidencia recurrente que no se ha logrado resolver.</p>
+      <p>En esos casos, Corpora analiza la necesidad, revisa la evidencia disponible sobre la materia y elabora un programa a medida con objetivos, duración y presupuesto. La elaboración de la propuesta no supone compromiso de contratación.</p>
+      <a class="btn btn-solid" href="#contacto">Solicitar una formación a medida</a>
+    </div>
+  </div>
+</section>
+
+<section id="quien">
+  <div class="shell">
+    <div class="section-head">
+      <h2>Sobre Corpora</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>Corpora es la marca de formación en salud para organizaciones dirigida por <strong>Irene Martínez</strong>, fisioterapeuta y profesora asociada en la Universidad de Vic, donde imparte emprendimiento, innovación y gestión sanitaria en el grado de Fisioterapia.</p>
+        <p>Esa doble condición, clínica y académica, define el enfoque de la marca. Años de práctica con personas de distintos grados de autonomía se combinan con la experiencia docente de traducir literatura científica en contenidos aplicables y comprensibles para un grupo.</p>
+        <p>En paralelo a la actividad clínica y docente, ha trabajado con empresas de perfiles muy distintos, desde startups en fase inicial hasta grandes organizaciones. Esa experiencia permite entender cómo funciona una plantilla por dentro y qué formación resulta realmente aplicable en cada estructura.</p>
+        <p>Cada formación parte de la evidencia disponible y de un criterio único. Identificar qué puede modificar de forma inmediata cada equipo en su propio puesto de trabajo.</p>
+      </div>
+      <div>
+        <div class="portrait">Foto: retrato profesional de Irene, vertical, fondo neutro o de aula</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="shell">
+    <div class="section-head">
+      <h2>Solicitar una propuesta</h2>
+      <p>Indique el perfil del equipo y la necesidad detectada. Recibirá una propuesta concreta, con duración y presupuesto, en un plazo de dos días laborables.</p>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <label for="nom">Nombre y organización</label>
+        <input id="nom" type="text" autocomplete="organization">
+
+        <label for="mail">Correo de contacto</label>
+        <input id="mail" type="email" autocomplete="email">
+
+        <label for="form">Formación que os interesa</label>
+        <select id="form">
+          <option>Ergonomía del puesto de oficina y teletrabajo</option>
+          <option>Dolor de espalda y cuello</option>
+          <option>Micropausas</option>
+          <option>Cuerpo y carga en trabajos de esfuerzo</option>
+          <option>Menopausia y trabajo</option>
+          <option>Salud de la mujer en el trabajo</option>
+          <option>Longevidad laboral</option>
+          <option>Sueño, descanso y rendimiento</option>
+          <option>Formación a medida</option>
+          <option>Otros</option>
+        </select>
+
+        <label for="msg">Perfil del equipo y contexto</label>
+        <textarea id="msg"></textarea>
+
+        <button class="btn btn-solid" type="button" id="send">Enviar la solicitud</button>
+        <p id="sendnote" class="sendnote" hidden>Se abrira su cliente de correo con la solicitud redactada.</p>
+      </div>
+      <div class="direct">
+        <p>Contacto directo</p>
+        <p><a href="mailto:hola@corpora.cat">hola@corpora.cat</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="shell foot">
+    <a class="lockup" href="#top" aria-label="Corpora, inicio">
+      <svg width="28" height="28" viewBox="0 0 56 56" aria-hidden="true">
+        <path d="M45 17 A 19 19 0 1 0 45 39" fill="none" stroke="#C9C6BE" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="29.5" cy="28" r="9.5" fill="#D97A4E"/>
+      </svg>
+      <span class="word">orpora</span>
+    </a>
+    <div>Servicio de Next Gen Academy SL</div>
+  </div>
+</footer>
+
+
+<script>
+(function () {
+  var b = document.getElementById('send');
+  if (!b) return;
+  var note = document.getElementById('sendnote');
+  b.addEventListener('click', function () {
+    var v = function (id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; };
+    var nom = v('nom'), mail = v('mail'), form = v('form'), msg = v('msg');
+    if (!nom || !mail) {
+      if (note) { note.textContent = 'Indique al menos su nombre y un correo de contacto.'; note.hidden = false; }
+      return;
+    }
+    var cuerpo =
+      'Nombre y organizacion: ' + nom + '\n' +
+      'Correo de contacto: ' + mail + '\n' +
+      'Formacion de interes: ' + form + '\n\n' +
+      'Perfil del equipo y contexto:\n' + (msg || '(sin detallar)') + '\n';
+    var href = 'mailto:hola@corpora.cat'
+      + '?subject=' + encodeURIComponent('Solicitud de propuesta - ' + nom)
+      + '&body=' + encodeURIComponent(cuerpo);
+    if (note) { note.textContent = 'Se abrira su cliente de correo con la solicitud redactada.'; note.hidden = false; }
+    window.location.href = href;
+  });
+})();
+</script>
+</body>
+</html>
