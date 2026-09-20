@@ -230,9 +230,16 @@
   .creds { background: #fff; border: 1px solid var(--linia); border-radius: 10px; padding: 1.6rem; }
   .creds h3 { font-family: var(--serif); font-weight: normal; font-size: 1.15rem; margin: 0 0 0.5rem; color: var(--verd); }
   .creds p { font-size: 0.92rem; color: var(--gris); margin: 0 0 0.85rem; }
+  .creds .rol { color: var(--grafit); margin-bottom: 0.35rem; }
+  .creds .colegiada {
+    font-size: 0.78rem; color: var(--terracota); letter-spacing: 0.2px;
+    padding-bottom: 0.85rem; margin-bottom: 0.85rem; border-bottom: 1px solid var(--linia);
+  }
   .creds p:last-child { margin-bottom: 0; }
   .equipo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
   .equipo-card { display: flex; flex-direction: column; gap: 1rem; }
+  /* la caja blanca iguala su altura en las tres fichas */
+  .equipo-card .creds { flex: 1; }
   .equipo-foto {
     display: block; width: 100%; aspect-ratio: 1 / 1;
     object-fit: cover; object-position: center 25%;
