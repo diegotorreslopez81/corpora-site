@@ -525,3 +525,34 @@
     nav ul { gap: 0.35rem; }
     nav a { font-size: 12.5px; }
   }
+
+  /* paginas legales: aviso legal, privacidad y cookies, los dos idiomas */
+  .legal { padding: 3.5rem 0 4.5rem; }
+  .legal .shell { max-width: 760px; }
+  .legal section { padding: 0; margin-bottom: 2.75rem; }
+  .legal section:last-of-type { margin-bottom: 0; }
+  .legal h2 {
+    font-family: var(--serif); font-weight: normal; font-size: 1.28rem;
+    color: var(--terracota); margin: 0 0 1.1rem;
+    padding-bottom: 0.7rem; border-bottom: 1px solid var(--linia);
+  }
+  .legal p { font-size: 0.95rem; margin: 0 0 1rem; }
+  .legal p:last-child { margin-bottom: 0; }
+  .legal a { color: var(--terracota); text-decoration: underline; text-underline-offset: 2px; }
+  .legal .apartat { margin-bottom: 0.5rem; }
+  .legal ul.temes { margin-bottom: 1rem; }
+  .datos { margin: 1.5rem 0 0; display: grid; gap: 0.1rem; }
+  .datos > div {
+    display: grid; grid-template-columns: 210px 1fr; gap: 0 1rem;
+    padding: 0.7rem 0; border-top: 1px solid var(--linia);
+  }
+  .datos > div:last-child { border-bottom: 1px solid var(--linia); }
+  .datos dt { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.7px; color: var(--gris); font-weight: 600; padding-top: 0.15rem; }
+  .datos dd { margin: 0; font-size: 0.95rem; }
+  .legal-fecha { font-size: 0.85rem; color: var(--gris); margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--linia); }
+
+  @media (max-width: 620px) {
+    .legal { padding: 2.25rem 0 3rem; }
+    .legal section { margin-bottom: 2.25rem; }
+    .datos > div { grid-template-columns: 1fr; gap: 0.15rem; }
+  }
