@@ -556,3 +556,19 @@
     .legal section { margin-bottom: 2.25rem; }
     .datos > div { grid-template-columns: 1fr; gap: 0.15rem; }
   }
+
+  /* blog: índice de artículos y artículo, los dos idiomas */
+  .blog-lista { max-width: 760px; }
+  .blog-item { padding: 1.75rem 0; border-top: 1px solid var(--linia); }
+  .blog-item:last-child { border-bottom: 1px solid var(--linia); }
+  .blog-item h2 { font-family: var(--serif); font-weight: normal; font-size: 1.45rem; line-height: 1.3; margin: 0 0 0.6rem; }
+  .blog-item h2 a { color: var(--grafit); text-decoration: none; }
+  .blog-item h2 a:hover { color: var(--terracota); }
+  .blog-item p { margin: 0 0 0.9rem; }
+  .blog-fecha { font-size: 0.85rem; color: var(--gris); margin: 0 0 0.35rem; }
+  .articulo ol.articulo-pasos { margin: 0 0 1rem; padding-left: 1.3rem; font-size: 0.95rem; }
+  .articulo ol.articulo-pasos li { margin-bottom: 0.6rem; line-height: 1.55; }
+  .articulo ul.temes { font-size: 0.95rem; }
+  .articulo-tabla { width: 100%; border-collapse: collapse; margin: 0 0 1.25rem; font-size: 0.92rem; }
+  .articulo-tabla th, .articulo-tabla td { text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--linia); }
+  .articulo-tabla th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.7px; color: var(--gris); font-weight: 600; }
