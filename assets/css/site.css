@@ -171,6 +171,7 @@
     font-family: var(--serif); font-size: 3rem; color: var(--verd);
     line-height: 1.05; margin: 0.2rem 0 0.9rem;
   }
+  .precio-box .cifra-texto { font-size: 1.9rem; line-height: 1.2; }
   .precio-box p { font-size: 0.95rem; color: var(--gris); margin: 0 0 0.8rem; }
   .precio-box p:last-child { margin-bottom: 0; }
   .precio-box ul { list-style: none; margin: 1.2rem 0 0; padding: 1.2rem 0 0; border-top: 1px solid var(--crema-fosc); font-size: 0.95rem; }
@@ -515,6 +516,7 @@
     /* tablas de precios y pasos */
     .precio-box, .pasos-card { padding: 1.5rem; }
     .cifra { font-size: 2.1rem; }
+    .cifra-texto { font-size: 1.55rem; }
 
     /* el formulario */
     .contact-form { max-width: none; }
